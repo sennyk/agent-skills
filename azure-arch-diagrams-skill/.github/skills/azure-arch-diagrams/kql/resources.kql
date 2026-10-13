@@ -1,0 +1,5 @@
+// All resources with the properties needed for relationships.
+// The RG_FILTER placeholder below is replaced by 02_enrich_arg.py with a resource-group filter (or nothing).
+Resources
+{{RG_FILTER}}
+| project id, name, type, kind, location, resourceGroup, subscriptionId, tags, sku, managedBy, properties

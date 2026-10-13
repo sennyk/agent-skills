@@ -1,0 +1,5 @@
+ResourceContainers
+| where type =~ 'microsoft.resources/subscriptions/resourcegroups'
+| extend resourceGroup = name
+{{RG_FILTER}}
+| project id, name, location, tags

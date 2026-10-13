@@ -1,0 +1,12 @@
+// Handy for manual checks in Resource Graph Explorer: VNets, subnets, NSG/UDR and what sits in each subnet.
+Resources
+| where type =~ 'microsoft.network/virtualnetworks'
+| mv-expand subnet = properties.subnets
+| project vnet = name, resourceGroup,
+          addressSpace = properties.addressSpace.addressPrefixes,
+          subnet = tostring(subnet.name),
+          prefix = coalesce(tostring(subnet.properties.addressPrefix), tostring(subnet.properties.addressPrefixes[0])),
+          nsg = tostring(split(tostring(subnet.properties.networkSecurityGroup.id), '/')[8]),
+          routeTable = tostring(split(tostring(subnet.properties.routeTable.id), '/')[8]),
+          delegation = tostring(subnet.properties.delegations[0].properties.serviceName),
+          ipConfigs = array_length(subnet.properties.ipConfigurations)

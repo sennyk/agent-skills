@@ -1,0 +1,8 @@
+// Private endpoint -> subnet -> target service
+Resources
+| where type =~ 'microsoft.network/privateendpoints'
+| mv-expand conn = properties.privateLinkServiceConnections
+| project pe = name, resourceGroup,
+          subnet = tostring(properties.subnet.id),
+          target = tostring(conn.properties.privateLinkServiceId),
+          groupIds = conn.properties.groupIds

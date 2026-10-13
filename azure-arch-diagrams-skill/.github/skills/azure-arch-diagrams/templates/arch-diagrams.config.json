@@ -1,0 +1,144 @@
+{
+  "_help": "Copy to the repo root as arch-diagrams.config.json. Only change what you need; missing keys use defaults.",
+  "subscription_id": "",
+  "inventory_csv": "azure-inventory.csv",
+  "iac_paths": [
+    "."
+  ],
+  "pipeline_paths": [
+    "."
+  ],
+  "ado": {
+    "organization": "https://dev.azure.com/<your-org>",
+    "project": "<your-project>"
+  },
+  "output_dir": "arch-diagrams",
+  "scope_to_csv_resource_groups": true,
+  "scan_app_settings": false,
+  "env": {
+    "order": [
+      "dev",
+      "qa",
+      "prod"
+    ],
+    "tokens": {
+      "dev": [
+        "dev",
+        "develop",
+        "development"
+      ],
+      "qa": [
+        "qa"
+      ],
+      "prod": [
+        "prod",
+        "prd",
+        "production"
+      ]
+    },
+    "default": "prod",
+    "tag_keys": [
+      "environment",
+      "env",
+      "Environment",
+      "Env"
+    ],
+    "shared_tokens": [
+      "hub",
+      "shared",
+      "common",
+      "connectivity",
+      "core",
+      "mgmt",
+      "management",
+      "platform"
+    ]
+  },
+  "app": {
+    "tag_keys": [
+      "application",
+      "app",
+      "workload",
+      "Application",
+      "App",
+      "Workload"
+    ],
+    "overrides": {},
+    "strip_tokens": [
+      "rg",
+      "res",
+      "resource",
+      "group",
+      "grp",
+      "001",
+      "01",
+      "02",
+      "we",
+      "weu",
+      "westeurope",
+      "ne",
+      "neu",
+      "northeurope",
+      "sc",
+      "swc",
+      "sdc",
+      "swedencentral",
+      "swedensouth",
+      "eus",
+      "eus2",
+      "eastus",
+      "eastus2",
+      "wus",
+      "westus",
+      "uks",
+      "uksouth",
+      "ukw",
+      "ukwest",
+      "cus",
+      "centralus",
+      "frc",
+      "francecentral",
+      "gwc",
+      "germanywestcentral",
+      "noe",
+      "norwayeast"
+    ]
+  },
+  "network_view": {
+    "hide_types": [
+      "microsoft.network/networkwatchers"
+    ]
+  },
+  "app_view": {
+    "hide_types": [
+      "microsoft.network/networkinterfaces",
+      "microsoft.compute/disks",
+      "microsoft.network/networkwatchers",
+      "microsoft.insights/actiongroups",
+      "microsoft.insights/metricalerts",
+      "microsoft.insights/scheduledqueryrules",
+      "microsoft.alertsmanagement/smartdetectoralertrules",
+      "microsoft.compute/virtualmachines/extensions",
+      "microsoft.network/privatednszones/virtualnetworklinks",
+      "microsoft.portal/dashboards",
+      "microsoft.network/networksecuritygroups",
+      "microsoft.network/routetables"
+    ]
+  },
+  "variable_overrides": {},
+  "_examples": {
+    "app.overrides": {
+      "^rg-ord|orders": "orders",
+      "pay": "payments"
+    },
+    "variable_overrides": {
+      "rgName": "rg-orders",
+      "webAppName": "app-orders"
+    },
+    "env.tokens.qa": [
+      "qa",
+      "test",
+      "uat"
+    ]
+  }
+}
